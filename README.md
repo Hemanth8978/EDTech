@@ -67,4 +67,4 @@ Students can't create assignments
 
 Teachers can't submit assignments
 
-CSRF tokens are used for form submissions (or JWT if using API clients)
+CSRF tokens are used for form submissions 
