@@ -1,13 +1,13 @@
 1. System Architecture
 The system follows a simple 3-layer architecture:
 
-scss
+
 Copy
 Edit
 Frontend (HTML/CSS/JS)
-       ↓
+       ->
 Django Backend (REST APIs)
-       ↓
+       ->
 SQLite Database (or PostgreSQL)
 Frontend: Allows teachers and students to interact with the system
 
