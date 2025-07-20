@@ -1,0 +1,70 @@
+{% extends 'tracker/base.html' %}
+{% block title %}View Submissions{% endblock %}
+{% block content %}
+<style>
+    /* View Submissions Page Styling */
+
+h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #9b59b6;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Outer list of students */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+/* Each student's submission block */
+ul > li {
+    background-color: #fdfdfd;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-left: 5px solid #9b59b6;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+}
+
+/* Inner details per submission */
+ul > li > ul {
+    padding: 6px 0;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Download link styling */
+a {
+    color: #9b59b6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+</style>
+<h2>Submissions for: {{ assignment.title }}</h2>
+
+
+{% if students %}
+    <ul>
+        {% for l in students %}
+        <li>
+            {% for i in l %}
+                <ul>{{i.submitted_by}}</ul>
+                <ul>{{i.content}}</ul>
+                <ul><a href="{{ i.file.url }}" download>Download File</a></ul>
+                <ul>{{i.submitted_at}}</ul>
+            {% endfor %}
+        </li>
+
+        {%  endfor %}
+    </ul>
+{% else %}
+    <p>No submissions yet.</p>
+{% endif %}
+{% endblock %}

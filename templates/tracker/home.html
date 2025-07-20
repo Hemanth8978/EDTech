@@ -1,0 +1,65 @@
+{% extends 'tracker/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<style>
+    
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+    margin: 20px;
+    padding: 0;
+}
+
+h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-left: 5px solid #3498db;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+</style>
+<h2>Dashboard</h2>
+
+{% if user.is_authenticated %}
+    {% if user.role == 'teacher' %}
+        <p><a href="{% url 'create_assignment' %}">Create New Assignment</a></p>
+        <p><a href="{% url 'view_submissions' user.id %}">View submissions</a></p>
+    {% elif user.role == 'student' %}
+        <p>Assignments you can submit:</p>
+        <ul>
+            {% for assignment in assignments %}
+                <li>
+                    {{ assignment.title }} (Due: {{ assignment.due_date }}) — 
+                    <a href="{% url 'submit_assignment' assignment.id %}">Submit</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% else %}
+    <p>Please <a href="{% url 'login' %}">login</a>.</p>
+{% endif %}
+{% endblock %}

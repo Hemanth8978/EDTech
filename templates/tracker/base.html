@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>{% block title %}EdTech Tracker{% endblock %}</title>
+    <style>
+        /* Center all content */
+.center-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+/* Optional: improve body look */
+body {
+    background-color: #f4f6f8;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Optional: style navbar */
+nav {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+h3{
+    color: white;
+    text-shadow: 2px 2px 2px rgb(0, 255, 76);
+    font-size: 30px;
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+        <h3>Welcome to EdTechnology</h3>
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }} ({{ user.role }}) | 
+            <a href="{% url 'logout' %}">Logout</a></p>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a> | 
+            <a href="{% url 'signup' %}">Sign Up</a>
+        {% endif %}
+        <hr>
+    </nav>
+
+    <div class="center-container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

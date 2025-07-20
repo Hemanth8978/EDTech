@@ -1,0 +1,67 @@
+{% extends 'tracker/base.html' %}
+{% block title %}Create Assignment{% endblock %}
+{% block content %}
+<style>/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9fbfd;
+    color: #333;
+    padding: 20px;
+}
+
+/* Headings */
+h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+/* Form labels */
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Inputs and textareas */
+input[type="text"],
+input[type="date"],
+textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Button */
+button[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+</style>
+<h2>Create Assignment</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Title:</label><br>
+    <input type="text" name="title" required><br><br>
+
+    <label>Description:</label><br>
+    <textarea name="description" required></textarea><br><br>
+
+    <label>Due Date:</label><br>
+    <input type="date" name="due_date" required><br><br>
+
+    <button type="submit">Create</button>
+</form>
+{% endblock %}

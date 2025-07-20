@@ -1,0 +1,75 @@
+{% extends 'tracker/base.html' %}
+{% block title %}Submit Assignment{% endblock %}
+{% block content %}
+<style>
+    /* Submit Assignment form styling */
+
+form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin-top: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Textarea styling */
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* File input styling */
+input[type="file"] {
+    margin-bottom: 20px;
+}
+
+/* Labels */
+label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Submit button */
+button[type="submit"] {
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #d35400;
+}
+
+/* Heading */
+h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #e67e22;
+    padding-bottom: 10px;
+}
+
+</style>
+<h2>Submit Assignment: {{ assignment.title }}</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Content:</label><br>
+    <textarea name="content" required></textarea><br><br>
+
+    <label>Upload File (optional):</label><br>
+    <input type="file" name="file"><br><br>
+
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
